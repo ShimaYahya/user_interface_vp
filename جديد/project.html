@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Volunteer Project Platform</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+    <link href="img/favicon.ico" rel="icon" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      .loading-spinner {
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+        width: 100%;
+      }
+      
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        color: #17a2b8;
+      }
+      
+      .no-projects {
+        text-align: center;
+        padding: 50px;
+        color: #777;
+        width: 100%;
+      }
+      
+      .projects-list-item {
+        transition: all 0.3s ease;
+      }
+      
+      .projects-list-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      }
+      
+      .filter-loading {
+        height: 38px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        animation: pulse 1.5s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 0.8; }
+        100% { opacity: 0.5; }
+      }
+      
+      .dependent-filter {
+        position: relative;
+      }
+      
+      .dependent-filter::after {
+        content: "↳";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+      
+      .category-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(231, 76, 60, 0.85);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 10;
+      }
+      
+      .project-details {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 1rem 0.5rem;
+      }
+      
+      .project-meta {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid bg-dark">
+      <div class="row py-2 px-lg-5">
+        <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+          <div class="d-inline-flex align-items-center text-white">
+            <small><i class="fa fa-phone-alt mr-2"></i>+90 555 123 4567</small>
+            <small class="px-3">|</small>
+            <small
+              ><i class="fa fa-envelope mr-2"></i>volunteer@aydin.edu.tr</small
+            >
+          </div>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+          <div class="d-inline-flex align-items-center">
+            <a
+              class="text-white px-2"
+              href="https://www.facebook.com/facebook"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              class="text-white px-2"
+              href="https://twitter.com/X"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              class="text-white px-2"
+              href="https://www.linkedin.com/company/linkedin/"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              class="text-white px-2"
+              href="https://www.instagram.com/instagram?igsh=YW5xdnhuem9scG8x"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              class="text-white pl-2"
+              href="  https://www.youtube.com/user/youtube"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid p-0">
+      <nav
+        class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5"
+      >
+        <a href="index.html" class="navbar-brand ml-lg-3">
+          <h1 class="m-0 text-uppercase text-primary">
+            <i class="fa fa-book-reader mr-3"></i>Volunteer Hub
+          </h1>
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between px-lg-3"
+          id="navbarCollapse"
+        >
+          <div class="navbar-nav mx-auto py-0">
+            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="about.html" class="nav-item nav-link">About</a>
+            <a href="project.html" class="nav-item nav-link active">Projects</a>
+            <a href="feature.html" class="nav-item nav-link">Our Features</a>
+            <a href="contact.html" class="nav-item nav-link">Contact</a>
+          </div>
+          <a
+            href="project.html"
+            class="btn btn-secondary py-2 px-4 d-none d-lg-block"
+            >Explore Projects</a
+          >
+        </div>
+      </nav>
+    </div>
+
+    <div
+      class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom"
+      style="margin-bottom: 90px"
+    >
+      <div class="container text-center py-5">
+        <h1 class="text-white display-1">Projects</h1>
+        <div class="d-inline-flex text-white mb-5">
+          <p class="m-0 text-uppercase">
+            <a class="text-white" href="">Home</a>
+          </p>
+          <i class="fa fa-angle-double-right pt-1 px-3"></i>
+          <p class="m-0 text-uppercase">Projects</p>
+        </div>
+        <h5 class="text-white lead mt-3">
+          Discover ways to support your community today.
+        </h5>
+      </div>
+    </div>
+
+    <div class="container-fluid py-5">
+      <div class="container py-5">
+        <div class="row mx-0 justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-title text-center position-relative mb-5">
+              <h6
+                class="d-inline-block position-relative text-secondary text-uppercase pb-2"
+              >
+                Our Projects
+              </h6>
+              <h1 class="display-4">Explore New Volunteer Opportunities</h1>
+            </div>
+          </div>
+        </div>
+        <div class="container mb-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">Filter Projects</h5>
+                  <form id="projectFilterForm">
+                    <div class="form-row">
+                      <div class="col-md-3 mb-3">
+                        <label for="categoryFilter">Category</label>
+                        <select class="form-control" id="categoryFilter">
+                          <option value="all">Loading categories...</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label for="executionFilter">Execution Type</label>
+                        <select class="form-control" id="executionFilter">
+                          <option value="all">Loading types...</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label for="countryFilter">Country</label>
+                        <select class="form-control" id="countryFilter">
+                          <option value="all">Loading countries...</option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-md-3 mb-3 dependent-filter">
+                        <label for="cityFilter">City</label>
+                        <select class="form-control" id="cityFilter" disabled>
+                          <option value="all">Select country first</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <button
+                        type="button"
+                        id="resetFilters"
+                        class="btn btn-outline-secondary mr-2"
+                      >
+                        Reset Filters
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Apply Filters
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" id="projectsContainer">
+          <div class="loading-spinner">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3">Loading projects...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5"
+      style="margin-top: 90px"
+    >
+      <div class="container mt-5 pt-5">
+        <div class="row">
+          <div class="col-md-6 mb-5">
+            <a href="index.html" class="navbar-brand">
+              <h1 class="mt-n2 text-uppercase text-white">
+                <i class="fa fa-book-reader mr-3"></i>Volunteer Hub
+              </h1>
+            </a>
+            <p class="m-0">
+              Volunteer Hub connects people with meaningful community projects.
+              We aim to empower individuals through service, collaboration, and
+              action.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-5">
+            <h3 class="text-white mb-4">Get In Touch</h3>
+            <p><i class="fa fa-phone-alt mr-2"></i>+90 555 123 4567</p>
+            <p><i class="fa fa-envelope mr-2"></i>volunteer@aydin.edu.tr</p>
+            <div class="d-flex justify-content-start mt-4">
+              <a
+                class="text-white mr-4"
+                href="https://twitter.com/X"
+                target="_blank"
+                rel="noopener"
+                ><i class="fab fa-2x fa-twitter"></i
+              ></a>
+              <a
+                class="text-white mr-4"
+                href="https://www.facebook.com/facebook"
+                target="_blank"
+                rel="noopener"
+                ><i class="fab fa-2x fa-facebook-f"></i
+              ></a>
+              <a
+                class="text-white mr-4"
+                href="https://www.linkedin.com/company/linkedin/"
+                target="_blank"
+                rel="noopener"
+                ><i class="fab fa-2x fa-linkedin-in"></i
+              ></a>
+              <a
+                class="text-white"
+                href="https://www.instagram.com/instagram?igsh=YW5xdnhuem9scG8x"
+                target="_blank"
+                rel="noopener"
+                ><i class="fab fa-2x fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-6 mb-5">
+            <h3 class="text-white mb-4">Quick Links</h3>
+            <div class="d-flex flex-column justify-content-start">
+              <a class="text-white-50 mb-2" href="about.html"
+                ><i class="fa fa-angle-right mr-2"></i>About Us</a
+              >
+              <a class="text-white-50 mb-2" href="project.html"
+                ><i class="fa fa-angle-right mr-2"></i>Explore Projects</a
+              >
+              <a class="text-white-50 mb-2" href="contact.html"
+                ><i class="fa fa-angle-right mr-2"></i>FAQs</a
+              >
+              <a class="text-white-50 mb-2" href="feature.html"
+                ><i class="fa fa-angle-right mr-2"></i>Our Featrures</a
+              >
+              <a class="text-white-50" href="contact.html"
+                ><i class="fa fa-angle-right mr-2"></i>Contact</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid bg-dark text-white-50 border-top py-4"
+      style="border-color: rgba(256, 256, 256, 0.1) !important"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+            <p class="m-0">
+              © 2025 <a class="text-white" href="#">Volunteer Hub</a>. All
+              Rights Reserved.
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-right">
+            <p class="m-0">Built with ❤️ for community service</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="#"
+      class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <script>
+      let allProjects = [];
+      let categories = [];
+      let executionTypes = [];
+      let allCities = [];
+      let countries = [];
+      
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      }
+      
+      function formatDateRange(startDate, endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        
+        if (start.getMonth() === end.getMonth()) {
+          return `${start.toLocaleDateString('en-US', { month: 'short' })} ${start.getDate()}–${end.getDate()}`;
+        }
+        
+        return `${formatDate(startDate)}–${formatDate(endDate)}`;
+      }
+      
+      async function fetchData(url) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch data from ${url}`);
+          }
+          const data = await response.json();
+          return data.data || data;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          return [];
+        }
+      }
+      
+      async function fetchAllData() {
+        try {
+          const [projects, cats, execs, cts, cntrs] = await Promise.all([
+            fetchData('http://localhost:3000/projects'),
+            fetchData('http://localhost:3000/categories'),
+            fetchData('http://localhost:3000/execution_type'),
+            fetchData('http://localhost:3000/cities'),
+            fetchData('http://localhost:3000/countries')
+          ]);
+          
+          allProjects = projects || [];
+          categories = cats || [];
+          executionTypes = execs || [];
+          allCities = cts || [];
+          countries = cntrs || [];
+          
+          populateFilter('categoryFilter', categories, 'category_name');
+          populateFilter('executionFilter', executionTypes, 'execution_type');
+          populateFilter('countryFilter', countries, 'name');
+          
+          const cityFilter = document.getElementById('cityFilter');
+          cityFilter.disabled = false;
+          updateCityFilter('all');
+          
+          const mappedProjects = mapProjectNames(allProjects);
+          
+          renderProjects(mappedProjects);
+          
+          initFilters();
+          
+        } catch (error) {
+          console.error('Error initializing data:', error);
+          document.getElementById('projectsContainer').innerHTML = `
+            <div class="col-12 no-projects">
+              <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+              <h3>Error Loading Data</h3>
+              <p>${error.message}</p>
+              <button class="btn btn-primary mt-3" onclick="fetchAllData()">Try Again</button>
+            </div>
+          `;
+        }
+      }
+      
+      function populateFilter(elementId, items, nameField) {
+        const select = document.getElementById(elementId);
+        select.innerHTML = '';
+        
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = `All ${elementId.replace('Filter', '')}s`;
+        select.appendChild(allOption);
+        
+        if (items && items.length) {
+          items.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item[nameField] || item.name || 'Unnamed';
+            select.appendChild(option);
+          });
+        } else {
+          const option = document.createElement('option');
+          option.textContent = 'No options available';
+          option.disabled = true;
+          select.appendChild(option);
+        }
+      }
+      
+      function updateCityFilter(countryId) {
+        const cityFilter = document.getElementById('cityFilter');
+        cityFilter.innerHTML = '';
+        
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = 'All Cities';
+        cityFilter.appendChild(allOption);
+        
+        let filteredCities = allCities;
+        if (countryId !== 'all') {
+          filteredCities = allCities.filter(city => city.CountryId == countryId);
+        }
+        
+        if (filteredCities.length) {
+          filteredCities.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city.id;
+            option.textContent = city.name || 'Unnamed City';
+            cityFilter.appendChild(option);
+          });
+        } else {
+          const option = document.createElement('option');
+          option.value = '';
+          option.textContent = 'No cities available';
+          option.disabled = true;
+          cityFilter.appendChild(option);
+        }
+      }
+      
+      function mapProjectNames(projects) {
+        return projects.map(project => {
+          let categoryNames = [];
+          if (project.Projects_Categories && project.Projects_Categories.length) {
+            project.Projects_Categories.forEach(pc => {
+              const category = categories.find(cat => cat.id === pc.category_id);
+              if (category) {
+                categoryNames.push(category.name);
+              }
+            });
+          }
+          
+          return {
+            ...project,
+            category_names: categoryNames,
+            category_name: categoryNames.join(', ') || 'No categories',
+            execution_type_name: project.Execution_type?.execution_type || 'Unknown',
+            city_name: project.City?.name || 'Unknown City',
+            country_name: project.Country?.name || 'Unknown Country'
+          };
+        });
+      }
+      
+      function renderProjects(projects) {
+        const container = document.getElementById('projectsContainer');
+        
+        if (!projects || projects.length === 0) {
+          container.innerHTML = `
+            <div class="col-12 no-projects">
+              <i class="fas fa-inbox fa-3x mb-3"></i>
+              <h3>No Projects Found</h3>
+              <p>No projects match your criteria</p>
+            </div>
+          `;
+          return;
+        }
+        
+        let projectsHTML = '';
+        
+        projects.forEach(project => {
+          const dateRange = formatDateRange(project.start_date, project.end_date);
+          const deadline = new Date(project.deadline);
+          const daysLeft = Math.ceil((deadline - new Date()) / (1000 * 60 * 60 * 24));
+          
+          projectsHTML += `
+            <div class="col-lg-4 col-md-6 pb-4 project-card"
+                 data-category="${project.category_id || ''}"
+                 data-execution="${project.execution_type_id || ''}"
+                 data-city="${project.city_id || ''}"
+                 data-country="${project.country_id || ''}">
+              <a class="projects-list-item position-relative d-block overflow-hidden mb-2"
+                 href="detail.html?id=${project.id}">
+                
+                <div class="category-badge">
+                  ${project.execution_type_name}
+                </div>
+                
+                <img class="img-fluid" 
+                     src="${project.photo || 'img/default-project.jpg'}" 
+                     alt="${project.project_name}"
+                     style="width: 800px; height: 400px; object-fit: cover">
+                <div class="projects-text">
+                  <h4 class="text-center text-white px-3">
+                    ${project.project_name}
+                  </h4>
+                  
+                  <div class="border-top w-100 mt-3">
+                    <div class="d-flex justify-content-between p-4">
+                      <span class="text-white">
+                        <i class="fa fa-map-marker-alt mr-2"></i>
+                        ${project.city_name}, ${project.country_name}
+                      </span>
+                      <span class="text-white">
+                        <i class="fa fa-users mr-2"></i>
+                        ${project.num_voliunteers || '0'} volunteers
+                      </span>
+                    </div>
+                    
+                    <div class="project-details">
+                      <span class="text-white project-meta">
+                        <i class="fa fa-calendar mr-1"></i> ${dateRange}
+                      </span>
+                      <span class="text-white project-meta">
+                        <i class="fa fa-clock mr-1"></i> ${daysLeft > 0 ? daysLeft + ' days left' : 'Deadline passed'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          `;
+        });
+        
+        container.innerHTML = projectsHTML;
+      }
+      
+      function initFilters() {
+        const filterForm = document.getElementById('projectFilterForm');
+        const resetBtn = document.getElementById('resetFilters');
+        const countryFilter = document.getElementById('countryFilter');
+        
+        countryFilter.addEventListener('change', function() {
+          updateCityFilter(this.value);
+        });
+        
+        filterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          applyFilters();
+        });
+        
+        resetBtn.addEventListener('click', function() {
+          document.getElementById('categoryFilter').value = 'all';
+          document.getElementById('executionFilter').value = 'all';
+          document.getElementById('countryFilter').value = 'all';
+          updateCityFilter('all');
+          applyFilters();
+        });
+      }
+      
+      function applyFilters() {
+        const category = document.getElementById('categoryFilter').value;
+        const execution = document.getElementById('executionFilter').value;
+        const country = document.getElementById('countryFilter').value;
+        const city = document.getElementById('cityFilter').value;
+        
+        let filteredProjects = mapProjectNames(allProjects);
+        
+        if (category !== 'all') {
+          filteredProjects = filteredProjects.filter(project => {
+            return project.Projects_Categories?.some(pc => pc.category_id == category);
+          });
+        }
+        
+        if (execution !== 'all') {
+          filteredProjects = filteredProjects.filter(
+            project => project.execution_type_id == execution
+          );
+        }
+        
+        if (country !== 'all') {
+          filteredProjects = filteredProjects.filter(
+            project => project.country_id == country
+          );
+        }
+        
+        if (city !== 'all') {
+          filteredProjects = filteredProjects.filter(
+            project => project.city_id == city
+          );
+        }
+        
+        renderProjects(filteredProjects);
+      }
+      
+      document.addEventListener('DOMContentLoaded', fetchAllData);
+    </script>
+  </body>
+</html>
