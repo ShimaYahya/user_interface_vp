@@ -452,13 +452,15 @@
           return [];
         }
       }
+
+      const API_URL = 'https://backend-vp.onrender.com';
       
       async function fetchAllData() {
         try {
           const [projects, cats, execs, cts, cntrs] = await Promise.all([
             fetchData('http://localhost:3000/projects'),
             fetchData('http://localhost:3000/categories'),
-            fetchData(`${process.env.API_URL}/execution_type`),
+            fetchData(`${API_URL}/execution_type`),
             fetchData('http://localhost:3000/cities'),
             fetchData('http://localhost:3000/countries')
           ]);
