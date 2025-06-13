@@ -458,11 +458,11 @@
       async function fetchAllData() {
         try {
           const [projects, cats, execs, cts, cntrs] = await Promise.all([
-            fetchData('http://localhost:3000/projects'),
-            fetchData('http://localhost:3000/categories'),
+            fetchData(`${API_URL}/projects`),
+            fetchData(`${API_URL}/categories`),
             fetchData(`${API_URL}/execution_type`),
-            fetchData('http://localhost:3000/cities'),
-            fetchData('http://localhost:3000/countries')
+            fetchData(`${API_URL}/cities`),
+            fetchData(`${API_URL}/countries`)
           ]);
           
           allProjects = projects || [];
