@@ -575,10 +575,12 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
       }
 
+      const API_URL = 'https://backend-vp.onrender.com';
+
       // Function to fetch project details
       async function fetchProjectDetails(projectId) {
         try {
-          const response = await fetch(`http://localhost:3000/projects/${projectId}`);
+          const response = await fetch(`${API_URL}/projects/${projectId}`);
           console.log("-----------------------------------response------", response)
 
           if (!response.ok) {
